@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
     <div class="questions">
         <h3>以 * 符號為基礎在網頁上排列出下列圖形:</h3>
         <ul>
@@ -270,5 +269,71 @@
         }
     ?>
     </table>
+
+    <h3>內含對角線的菱型</h3>
+
+    <!-- 
+    line=5
+
+        *                     0
+       * *     i=1 j=5        1
+      *   *    i=2 j=4~6      3
+     *     *   i=3 j=3~7      5
+    *       *  i=4 j=2~8      7
+
+
+
+     *     *
+      *   *
+       * *
+        *
+    -->
+
+    <table class="star">
+    <?php
+        $line = 5; 
+        $li= $line - 1;
+
+        for($i=0; $i<9; $i++){
+            echo "<tr>";
+            for($j=0; $j < 9 ; $j++){
+                echo "<td>";
+                if (abs(4-$i)==$j || 8 - abs(4-$i)==$j ) {
+                    echo "*"; 
+                } elseif ($j==4 || $i==4) {
+                    echo "*"; 
+                } else {
+                    echo "&nbsp"; 
+                }
+                echo "</td>";
+            }
+            echo "</tr>";
+        }
+    ?>
+    </table>
+    <br><br>
+
+    <table class="star">
+    <?php
+        $line = 5; 
+
+        for($i=1; $i<$line*2; $i++){
+            echo "<tr>";
+            for($j=1; $j < $line*2 ; $j++){
+                echo "<td>";
+                if (abs($line-$i)==$j-1 || $line*2 - abs($line-$i)==$j+1 ) {
+                    echo "*"; 
+                } elseif ($j==$line  || $i==$line ) {
+                    echo "*"; 
+                } else {
+                    echo "&nbsp"; 
+                }
+                echo "</td>";
+            }
+            echo "</tr>";
+        }
+    ?>
+    </table>
+
 </body>
 </html>
