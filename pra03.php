@@ -291,14 +291,11 @@
 
     <table class="star">
     <?php
-        $line = 5; 
-        $li= $line - 1;
-
-        for($i=0; $i<9; $i++){
+        for($i=0; $i<10; $i++){
             echo "<tr>";
-            for($j=0; $j < 9 ; $j++){
+            for($j=0; $j < 10 ; $j++){
                 echo "<td>";
-                if (abs(4-$i)==$j || 8 - abs(4-$i)==$j ) {
+                if (abs(4-$i)==$j || 9 - abs(4-$i)==$j ) {
                     echo "*"; 
                 } elseif ($j==4 || $i==4) {
                     echo "*"; 
