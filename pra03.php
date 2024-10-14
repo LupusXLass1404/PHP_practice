@@ -204,17 +204,20 @@
     *****
     ** ** i = 2, j=4
     * * *
-    ** ** i = 4, j=4
+    ** ** i = 4, j=2
     *****
 
-    *******7-25+1
+    line=7
+    ******* i=1, j=7
     **   ** i=2, j=6
     * * * * i=3, j=5
     *  *  * i=4, j=4
-    * * * * i=5, j=5
-    **   ** i=6, j=6
+    * * * * i=5, j=3
+    **   ** i=6, j=2
     *******
-
+    
+    i+j一定是8(line+1)
+    
 
     不管怎樣一行最多只會有四顆星
     最中間肯定是三顆星
@@ -222,6 +225,9 @@
 
     <table class="star">
     <?php
+        $line = 6; 
+        $li= $line - 1;
+
         for($i=0; $i < $line; $i++){
             echo "<tr>";
             for($j=0; $j < $line; $j++){
@@ -229,6 +235,31 @@
                 if ($i== 0 || $i == $li || $j==0 || $j == $li) { //最外框線
                     echo "*"; 
                 } elseif ($i == $j || $li-$i == $j){ //裡面星星
+                    echo "*"; 
+                } else {
+                    echo "&nbsp";
+                }
+                echo "</td>";
+            }
+            echo "</tr>";
+        }
+    ?>
+    </table>
+    <br><br>
+
+    <table class="star">
+    <?php
+        $line = 10; 
+
+        for($i=1; $i <= $line; $i++){
+            echo "<tr>";
+            for($j=1; $j <= $line; $j++){
+                echo "<td>";
+                if ($i== 1 || $i == $line || $j==1 || $j == $line) { //最外框線
+                    echo "*"; 
+                } elseif ($i == $j || $i+$j==$line+1){ //裡面星星
+                    // $line-$i+1 == $j
+                    // $i+$j == $line+1
                     echo "*"; 
                 } else {
                     echo "&nbsp";

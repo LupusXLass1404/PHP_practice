@@ -17,8 +17,6 @@
         }
     ?>
 
-    
-
     <h1>switch...case</h1>
     <?php
         $arr = ['A*','A', 'B', 'C', 'D', 'E'];

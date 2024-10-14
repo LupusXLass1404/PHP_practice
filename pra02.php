@@ -28,21 +28,25 @@
         echo "<br>";
 
         $num = 50;
-        $prime = [];
-
-        // for ($i=2; $i <= $num; $i++) {
-        //     for($j=2; $j < $i; $j++){
-        //         if () {
-
-        //         } else {
-
-        //         }
-                
-        //     }
-        //     echo $i;
-        // }
-
-
+        $prime = [2];
+        // 總數迴圈
+        for ($i=2; $i <= $num; $i++) {
+            if ($i%2==0){
+                break;
+            } else {
+                // 抓陣列的迴圈
+                for($j=2; $j < $i; $j++){
+                    if ($i%$j==0) {
+                        break;
+                    } else {
+                        array_push($i);
+                    }
+                }
+            }  
+        }
+        foreach ($prime as $key => $value) {
+            
+        }
     ?>
 
     <hr><br>
