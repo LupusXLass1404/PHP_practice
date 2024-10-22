@@ -57,6 +57,58 @@ print('<pre>');
 print_r($array);
 print('</pre>');
 ?>
+
+<div class="questions">
+<h3>已知西元1024年為甲子年，請設計一支程式，可以接受任一西元年份，輸出對應的天干地支的年別。(利用迴圈)</h3> 
+    <ul>
+        <li>天干：甲乙丙丁戊己庚辛壬癸</li>
+        <li>地支：子丑寅卯辰巳午未申酉戌亥</li>
+        <li>天干地支配對：甲子、乙丑、丙寅….甲戌、乙亥、丙子…</li>
+    </ul>
+</div>
+<!-- AD Anno Domini CT sexagenary cycle-->
+
+<?php
+    $year= 2034;
+    $Celestial = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
+    $Terrestrial = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+    
+    echo "西元$year" . $Celestial[($year+6)%10] . $Terrestrial[($year+8)%12];
+?>
+
+<table>
+<?php
+for($i=0; $i<6; $i++){
+    echo "</tr>";
+    for($j=0; $j<10; $j++){
+        $cellnum=10*$i+$j;
+        $landIndex=$cellnum%12;
+
+        echo "<td>";
+        echo $Celestial[$j] . $Terrestrial[$landIndex];
+        echo "</td>";
+    }
+    echo "</tr>";
+}
+?>
+</table>
+
+<?php
+    $sl=[];
+    for($i=0; $i<6; $i++){
+        
+        for($j=0; $j<10; $j++){
+            $cellnum=10*$i+$j;
+            $landIndex=$cellnum%12;
+
+            $sl[]= $Celestial[$j] . $Terrestrial[$landIndex];
+        }
+    }
+    echo $sl[($year-4)%60]
+?>
+
+
+
     
 </body>
 </html>
