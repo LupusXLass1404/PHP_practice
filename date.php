@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .holiday {
+            background: pink;
+            color:#999;
+        }
+        .grey-text {
+            opacity: 0.4;
+        }
+        .today {
+            color:red;
+            font-weight:bolder;
+        }
+    </style>
 </head>
 <body>
     <h2>給定兩個日期，計算中間間隔天數</h2>
@@ -150,6 +163,7 @@
     // echo $firstDayWeek;
 
     for ($i=1; $i<=7; $i++){
+        // .holiday
         echo "<tr>";
         echo "<td>$i</td>";
         for ($j=1; $j<=7; $j++){
@@ -186,14 +200,29 @@
     $firstDay=date("Y-m-1");
     $firstDayTime = strtotime($firstDay);
     $firstDayWeek = date('w', strtotime(date('Y-m-01')));
+    $thisMonth=date("m");
     
     for ($i=1; $i<=7; $i++){
         echo "<tr>";
         echo "<td>$i</td>";
         for ($j=1; $j<=7; $j++){
-            echo "<td>";
+            // if ($j==1 || $j == 7) {
+            //     echo "<td class='holiday'>";
+            // } else {
+            //     echo "<td>";
+            // }
             $cell=($i-1)*7 + ($j-1) - $firstDayWeek;
             $theDayTime=strtotime("$cell  days".$firstDay);
+            $w=date("w", $theDayTime);
+            $isToday=(date("Y-m-d",$theDayTime)==date("Y-m-d"))?'today':'';
+
+            if (date("m", $theDayTime) != $thisMonth) {
+                echo "<td class='grey-text $isToday'>";
+            } else if ($w==0 || $w == 6) {
+                echo "<td class='holiday $isToday'>";
+            } else {
+                echo "<td class='$isToday'>";
+            }
             echo date("d", $theDayTime);
             echo "</td>";
         }
