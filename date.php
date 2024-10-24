@@ -144,8 +144,10 @@
     </tr>
 
     <?php 
+    $firstDay=date("Y-m-1");
+    $firstDayTime = strtotime($firstDay);
     $firstDayWeek = date('w', strtotime(date('Y-m-01')));
-    echo $firstDayWeek;
+    // echo $firstDayWeek;
 
     for ($i=1; $i<=7; $i++){
         echo "<tr>";
@@ -160,12 +162,46 @@
         }
         echo "</tr>";
     }
+    ?>
 
+</table>
+<br><br>
+
+<table class="nine" style="width:20%;">
+    <caption>
+        <?php echo date("m月");?>
+    </caption>
+    <tr>
+        <td></td>
+        <td>日</td>
+        <td>一</td>
+        <td>二</td>
+        <td>三</td>
+        <td>四</td>
+        <td>五</td>
+        <td>六</td>
+    </tr>
+
+    <?php 
+    $firstDay=date("Y-m-1");
+    $firstDayTime = strtotime($firstDay);
+    $firstDayWeek = date('w', strtotime(date('Y-m-01')));
+    
+    for ($i=1; $i<=7; $i++){
+        echo "<tr>";
+        echo "<td>$i</td>";
+        for ($j=1; $j<=7; $j++){
+            echo "<td>";
+            $cell=($i-1)*7 + ($j-1) - $firstDayWeek;
+            $theDayTime=strtotime("$cell  days".$firstDay);
+            echo date("d", $theDayTime);
+            echo "</td>";
+        }
+        echo "</tr>";
+    }
     ?>
 
 </table>
 
-
-    
 </body>
 </html>
