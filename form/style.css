@@ -1,0 +1,9 @@
+body {
+    padding: 20px;
+}
+
+fieldset {
+    width: 20%;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}

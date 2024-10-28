@@ -4,22 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>計算BIM</title>
-    <style>
-        body {
-            padding: 20px;
-        }
-        fieldset {
-            width: 20%;
-            border-radius: 8px;
-            margin-bottom: 8px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
     <div>BMI計算</div>
-    <form action="result.php">
+    <form action="result.php" method="get">
         <div class="lable">
             <label for="height">
                 <fieldset laceholder="身高">
