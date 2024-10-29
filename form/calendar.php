@@ -4,19 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>萬年曆</title>
-    <style>
-        .holiday {
-            background: pink;
-            color:#999;
-        }
-        .grey-text {
-            opacity: 0.4;
-        }
-        .today {
-            color:red;
-            font-weight:bolder;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -56,16 +44,16 @@
     }
 
     if($month+1>12){
-        $prevMonth=1;
-        $prevYear=$year+1;
+        $nextMonth=1;
+        $nextYear=$year+1;
     } else {
-        $prevMonth=$month+1;
-        $prevYear=$year;
+        $nextMonth=$month+1;
+        $nextYear=$year;
     }
 ?>
 <a href="calendar.php?month=<?=$year-12;?>">前年</a>
 <a href="calendar.php?year=<?=$prevYear;?>&month=<?=$prevMonth;?>">上個月</a>
-<a href="calendar.php?year=<?=$prevYear;?>&month=<?=$prevMonth;?>">下個月</a>
+<a href="calendar.php?year=<?=$nextYear;?>&month=<?=$nextMonth;?>">下個月</a>
 <a href="calendar.php?month=<?=$year+12;?>">明年</a>
 <table class="nine" style="width:20%;">
     <caption>
