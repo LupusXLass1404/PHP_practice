@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>計算BIM</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bmi-style.css">
 </head>
 <body>
     <?php

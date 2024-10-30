@@ -1,0 +1,107 @@
+body {
+    background-color: rgb(47, 51, 64);
+    color: rgb(205, 218, 237);
+    margin: 40px;
+}
+
+nav {
+    padding: 16px;
+    background-color: rgb(64, 64, 117);
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+a {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+
+main {
+    animation: goback 10s ease-in-out infinite;
+}
+
+@keyframes goback {
+
+    0%,
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+
+    25% {
+        transform: translateX(40%) translateY(-50px);
+    }
+
+    50% {
+        transform: translateX(80%) translateY(0px);
+    }
+
+    75% {
+        transform: translateX(40%) translateY(50px);
+    }
+
+}
+
+footer {
+    color: rgb(141, 141, 141);
+    background-color: rgb(57, 53, 67);
+    box-shadow: 0px 2px 5px rgba(255, 255, 255, 0.5);
+    padding: 16px;
+    border-radius: 80px;
+    text-align: center;
+    animation: move 2s ease-in-out infinite;
+}
+
+
+
+@keyframes move {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(50px);
+    }
+
+}
+
+@keyframes jump-move {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    25% {
+        transform: translateY(-20px);
+    }
+
+    75% {
+        transform: translateY(20px);
+    }
+
+}
+
+.jump {
+    animation: jump-move 0.75s infinite alternate;
+    display: inline-block;
+    box-shadow: 0px 5px 80px rgb(202, 239, 253);
+    padding: 8px;
+}
+
+.jump:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.jump:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.jump:nth-child(3) {
+    animation-delay: 0.9s;
+}
+
+.jump:nth-child(4) {
+    animation-delay: 1.2s;
+}

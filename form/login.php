@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../reset.css">
 
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'>
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'>
@@ -164,19 +163,14 @@
 
 <body>
 
-    <!-- <form action="./php/data.php">
-        <label for="">姓名：</label>
-        <input type="text" name="name" id=""><br>
-        <label for="">電話：</label>
-        <input type="text" name="mobile" id=""><br>
-        <label for="">價錢：</label>
-        <input type="number" name="price" id=""><br>
-        <label for="">生日：</label>
-        <input type="date" name="birthday" id=""><br>
-
-        <input type="submit" value="送出">
-    </form> -->
-    <!-- name 是給 php；id是拿來控制的-->
+<?php 
+    // if(isset($_SESSION['login'])){
+?>
+<?php 
+    if(isset($_COOKIE['login'])){
+?>
+    <p style="color:#EEEEEE; margin:auto; font-size: 32px;"><b>你登入過了<b></P>
+<?php }else{?>
 
 
     <div class="main">
@@ -206,6 +200,8 @@
             </div>
         </form>
     </div>
+    
+<?php };?>
 </body>
 
 </html>
