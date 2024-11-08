@@ -26,7 +26,6 @@
 
         a {
             color:#fff;
-            text-decoration: none;
         }
 
         h2{
@@ -44,50 +43,55 @@
     </style>
 </head>
 <body>
-    <h2>班級導師表</h2>
-    <?php
+
+
+
+
+<?php
+    $id = $_GET["id"];
+?>
+<?php
+    $dsn= "mysql:host=localhost;charset=utf8;dbname=school";
     $dsn= "mysql:host=localhost;charset=utf8;dbname=school";
     $pdo=new PDO($dsn, 'root','');
 
-    $sql="select * from classes";
+    $sql="SELECT `classes`.`id` as 'id',
+            `classes`.`name` as 'classname',
+            `class_student`.`school_num` as 'num',
+            `students`.`name` as 'name'
+        FROM `classes`, `class_student`, `students`
+        WHERE `classes`.`id` = $id && 
+            `classes`.`code`=`class_student`.`class_code` &&
+            `class_student`.`school_num` = `students`.`school_num`";
 
     $rows=$pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     // echo "<pre>";
     // print_r($rows);
     // echo "</pre>";
-    ?>
+?>
+    <h2>學生資料<a href="pdo.php">返回</a></h2>
+    
+    <table>
+        <tr>
+            <td>班級</td>
+            <td>學號</td>
+            <td>名字</td>
+        </tr>
+        <?php
+            foreach($rows as $index => $row){
+        ?>
+        <tr>
+            <td><?=$row['classname'];?></td>
+            <td><?=$row['num'];?></td>
+            <td><?=$row['name'];?></td>
+        </tr>
+        <?php
+            }
+        ?>
+    </table>
+    
 
-<table>
-    <tr>
-        <td>序號</td>
-        <td>班名</td>
-        <td>導師</td>
-    </tr>
 
-    <?php
-    // foreach($rows as $row){
-    //     echo"<tr>";
-    //     echo "<td>".$row['id']."</td>";
-    //     echo "<td>>".$row['name']."</td>";
-    //     echo "<td>".$row['tutor']."</td>";
-    //     echo"</tr>";
-    // }
-    ?>
-    <?php
-        foreach($rows as $row){
-    ?>
-    <tr>
-        <td><?=$row['id'];?></td>
-        <td>
-            <a href="classes_detail.php?id=<?=$row['id'];?>">
-                <?=$row['name'];?>
-            </a>
-        </td>
-        <td><?=$row['tutor'];?></td>
-    </tr>
-    <?php
-        }
-    ?>
-</table>
 </body>
 </html>
+
