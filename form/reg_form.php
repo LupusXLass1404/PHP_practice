@@ -1,3 +1,9 @@
+<?php
+    // if(!empty($_POST['acc'])){
+    //     print_r($_POST);
+    // }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,27 +71,36 @@
 <body>
     <h1>會員註冊</h1>
     <!-- form:post>(div>label+input:text)*4+div>input:submit+input:reset -->
-    <form action="" method="post">
+    <form action="reg.php" method="post">
         <div>
-            <label for="">帳號</label>：
-            <input type="text" name="" id="">
+            <label for="acc">帳號</label>：
+            <input type="text" name="acc" id="acc" required>
         </div>
         <div>
-            <label for="">密碼</label>：
-            <input type="text" name="" id="">
+            <label for="pw">密碼</label>：
+            <input type="password" name="pw" id="pw" required>
         </div>
         <div>
-            <label for="">電子郵件</label>：
-            <input type="text" name="" id="">
+            <label for="email">電子郵件</label>：
+            <input type="text" name="email" id="email">
         </div>
         <div>
-            <label for="">電話</label>：
-            <input type="text" name="" id="">
+            <label for="tel">電話</label>：
+            <input type="text" name="tel" id="tel">
         </div>
         <div>
             <input type="submit" value="註冊">
             <input type="reset" value="重置">
         </div>
+
+        <?php
+            if (isset($_GET['status'])) {  // 檢查是否有接收到 'status' 這個 POST 參數
+                $status = $_GET['status'];
+                if ($status == 1) {
+                    echo "<p>註冊成功</p>";
+                }
+            }
+        ?>
     </form>
 </body>
 </html>
