@@ -102,5 +102,10 @@
             }
         ?>
     </form>
+
+    <?php
+        include "../function.php";
+        starts("稜形",17);
+    ?>
 </body>
 </html>

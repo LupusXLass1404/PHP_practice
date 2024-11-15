@@ -13,13 +13,8 @@
 <body>
     <h1>登入成功</h1>
     <?php 
-        $dsn="mysql:host=localhost;charset=utf8;dbname=crud";
-        $pdo=new PDO($dsn, 'root', '');
-
-        $sql="select * from classes";
-
-        $sql="SELECT * FROM `member`";
-        $rows=$pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        include "../function.php";
+        $rows=all("member");
 
         // echo "<pre>";
         // print_r($rows);
