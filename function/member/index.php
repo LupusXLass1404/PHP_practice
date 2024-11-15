@@ -8,9 +8,9 @@
 </head>
 <body>
     <ul>
-        <li><a href="bmi.php">BMI計算-表單傳值練習</a></li>
-        <li><a href="login.php">登入檢查</a></li>
-        <li><a href="calendar.php">萬年曆</a></li>
+        <li><a href="reg_form.php">註冊系統</a></li>
+        <li><a href="login_form.php">資料庫登入系統</a></li>
+        <li><a href=""></a></li>
     </ul>  
 </body>
 </html>
