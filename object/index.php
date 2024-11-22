@@ -10,7 +10,7 @@
     <?php
         class Animal {
             protected $type='animal';
-            protected $name='John';
+            protected $name='Abb';
             protected $hair_color='black';
             protected $feet= ['front-left', 'front-right', 'back-left', 'back-right'];
             
@@ -36,6 +36,14 @@
             public function set($va, $n){
                 $this->$va= $n;
             }
+
+            public function getName(){
+                return $this->name;
+              } 
+            
+            public function setName($name){
+                $this->name=$name;
+            } 
         }
 
         // 實例化(instance)
@@ -48,8 +56,27 @@
         // echo $cat->run();
         // echo $cat->speed();
 
-        $cat->set('name','Jon');
+        $cat->set('name','Mary');
         echo $cat->get('name');
+    ?>
+
+    <h2>繼承</h2>
+
+    <?php
+        class Cat extends Animal {
+            protected $type='cat';
+            // protected $name="Judy";
+
+            function __construct($name, $hair_color){
+                $this->name=$name;
+                $this->hair_color=$hair_color;
+            }
+        }
+
+        $mycat=new Cat('Judy','white');
+
+        echo $mycat->get('name');
+        echo $mycat->run();
     ?>
     
 </body>
