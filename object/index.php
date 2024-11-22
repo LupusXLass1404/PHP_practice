@@ -89,6 +89,27 @@
         echo $mycat->get('name');
         echo $mycat->run();
         echo $mycat->jump();
+        echo "<br><br>";
+        
+        class Dog extends Animal implements Behavior{
+            protected $type='dog';
+
+            function __construct($name, $hair_color){
+                $this->name=$name;
+                $this->hair_color=$hair_color;
+            }
+
+            function jump(){
+                echo $this->name."jumpping 2m";
+            }
+        }
+
+        $mydog=new Dog('William', 'black');
+
+        echo $mydog->get('name');
+        echo $mydog->run();
+        echo $mydog->jump();
+
     ?>
     
 </body>
