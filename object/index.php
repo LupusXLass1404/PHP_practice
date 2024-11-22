@@ -63,7 +63,7 @@
     <h2>繼承</h2>
 
     <?php
-        class Cat extends Animal {
+        class Cat extends Animal implements Behavior{
             protected $type='cat';
             // protected $name="Judy";
 
@@ -71,12 +71,24 @@
                 $this->name=$name;
                 $this->hair_color=$hair_color;
             }
+
+            function jump(){
+                echo $this->name."jumpping 2m";
+            }
         }
+
+        interface Behavior {
+            public function run();
+            public function speed();
+            public function jump();
+        }
+        
 
         $mycat=new Cat('Judy','white');
 
         echo $mycat->get('name');
         echo $mycat->run();
+        echo $mycat->jump();
     ?>
     
 </body>
