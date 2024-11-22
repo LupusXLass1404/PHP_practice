@@ -11,14 +11,12 @@
     </style>
 </head>
 <body>
+
     <h1>登入成功</h1>
     <?php 
         include "../function.php";
         $rows=all("member");
-
-        // echo "<pre>";
-        // print_r($rows);
-        // echo "</pre>";
+        // dd(find('member', 1));
     ?>
 
     <table>
