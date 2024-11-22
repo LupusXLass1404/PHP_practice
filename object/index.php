@@ -48,7 +48,6 @@
         // echo $cat->run();
         // echo $cat->speed();
 
-        echo $cat->get('name');
         $cat->set('name','Jon');
         echo $cat->get('name');
     ?>
