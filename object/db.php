@@ -70,9 +70,11 @@ class DB{
      function save($array){
         if(isset($array['id'])){
             //update
+            $id=$array['id'];
+            unset($array['id']);
             $set = $this->a2s($array);
 
-            $sql = "UPDATE $this->table SET ".join(',',$set)."WHERE `id` = '{$array['id']}'";
+            $sql = "UPDATE $this->table SET ".join(',',$set)." WHERE `id` = '$id'";
         } else {
             //insert
             $cols=array_keys($array);      
@@ -115,6 +117,6 @@ function dd($array){
 $DEPT=new DB('dept');
 $dept=$DEPT->find(['name'=> '商業經營科']);
 // $DEPT->del(2);
-$DEPT->save(['code'=>'508', 'id'=>'7', 'name'=>'資訊部']);
+$DEPT->save(['code'=>'5889', 'id'=>'7', 'name'=>'資訊發展部']);
 
 dd($dept);
