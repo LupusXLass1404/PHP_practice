@@ -12,10 +12,27 @@ class DB{
 
     /**
      * 撈出全部資料
+     * 1. 整張資料表
+     * 2. 有條件
+     * 3. 其它SQL功能
      */
 
-    function all(){
-        return $this->q("SELECT * FROM $this->table");
+    function all(...$arg){
+        $sql= "SELECT * FROM $this->table ";
+        if(!empty($arg[0])){
+            if(is_array($arg[0])){
+                $where=$this->a2s($arg[0]);
+                $sql=$sql. "WHERE" . join(" && ", $where);
+            }else{
+                //$sql=$sql.$arg[0];
+                $sql .= $arg[0];
+            }
+        }
+
+        if(!empty($arg[1])){
+            $sql=$sql . $arg[1];
+        }
+        return $this->fetchAll($sql);
     }
 
     /**
@@ -30,12 +47,12 @@ class DB{
         return $tmp;
      }
 
-    function fetchOne(){
+    function fetchOne($sql){
         //echo $sql;
         return $this->pdo->query($sql)->fetch();
     }
     
-    function fetchAll(){
+    function fetchAll($sql){
         //echo $sql;
         return $this->pdo->query($sql)->fetchAll();
      }
@@ -52,6 +69,6 @@ function dd($array){
 }
 
 $DEPT=new DB('dept');
-$dept=$DEPT->all();
+$dept=$DEPT->all(" Order by `id` DESC");
 
 dd($dept);
