@@ -10,6 +10,7 @@ class DB{
         $this->pdo=new PDO($this->dsn,'root','');
     }
 
+
     /**
      * 撈出全部資料
      * 1. 整張資料表
@@ -93,15 +94,62 @@ class DB{
         return $tmp;
      }
 
+    /**
+     * 取得單筆資料
+     */
     function fetchOne($sql){
         //echo $sql;
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * 取得多筆資料
+     */
     
     function fetchAll($sql){
         //echo $sql;
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
      }
+
+     /**
+      * 
+      */
+
+    function max($col, $where=[]){
+        return $this->math('max', $col, $where);
+    }
+
+    function sum($col, $where=[]){
+        return $this->math('sum', $col, $where);
+    }
+
+    function min($col, $where=[]){
+        return $this->math('min', $col, $where);
+    }
+
+    function avg($col, $where=[]){
+        return $this->math('avg', $col, $where);
+    }
+
+    function count($where=[]){
+        return $this->math('count', '*', $where);
+    }
+
+    /**
+     * 方便使用各種聚合函數
+     */
+
+    protected function math($math, $col='id', $where=[]){
+        $sql= "SELECT $math($col) FROM $this->table";
+        if(!empty($where)){
+            $tmp=$this->a2s($where);
+            $sql=$sql . " WHERE " . join("&&", $tmp);
+        }
+        return $this->pdo->query($sql)->fetchColumn();
+     }
+
+
+
 }
 
 // function q($sql){
@@ -115,8 +163,13 @@ function dd($array){
 }
 
 $DEPT=new DB('dept');
-$dept=$DEPT->find(['name'=> '商業經營科']);
+// $dept=$DEPT->find(['name'=> '商業經營科']);
 // $DEPT->del(2);
-$DEPT->save(['code'=>'5889', 'id'=>'7', 'name'=>'資訊發展部']);
+// $DEPT->save(['code'=>'5889', 'id'=>'7', 'name'=>'資訊發展部']);
 
-dd($dept);
+// echo $DEPT->math('','id');
+
+// dd($dept);
+
+echo $DEPT->max('id',['code'=>'503']);
+// echo $DEPT->count();
