@@ -9,8 +9,9 @@
 
 <body>
     <form action="./upload_item.php" method="post" enctype="multipart/form-data">
+
         <div>
-            <input type="file" name="" id="">
+            <input type="file" name="img" id="">
         </div>
         <div>
             商品名稱：
