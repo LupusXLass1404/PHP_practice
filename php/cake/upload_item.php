@@ -4,16 +4,21 @@ include_once './db.php';
 
 if (isset($_FILES['img'])) {
     // 查看檔案資料
-    echo "<pre>";
-    print_r($_FILES['img']);
-    echo "</pre>";
-} else {
-    echo "未上傳檔案。";
+    
+    $tmp = $_FILES['img']['tmp_name'];
+    $poth = "./upload/{$_FILES['img']['name']}";
+    move_uploaded_file($tmp, $poth);
+    $_POST['img']=$_FILES['img']['name'];
+    dd($_FILES['img']);
 }
-$dbs="mysql:host=localhost;charset=utf8;dbname=cake";
-$pdo=
 
 
-dd($_POST);
+$tmp = array_keys($_POST);
+$spl = "Insert Into `item` (`".join("`, `",$tmp)."`) Value ('".join("', '", $_POST)."')";
+
+db() -> exec($spl);
+
+
+to('./admin.php');
 
 ?>
