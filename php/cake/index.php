@@ -1,3 +1,6 @@
+<?php
+    include_once 'db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,22 +11,7 @@
 </head>
 
 <body>
-    <form action="./upload_item.php" method="post" enctype="multipart/form-data">
-        <div>
-            <input type="file" name="img" id="">
-        </div>
-        <div>
-            商品名稱：
-            <input type="text" name="name" id="">
-        </div>
-        <div>
-            價錢
-            <input type="number" name="cost" id="" value="0" min="0">
-        </div>
 
-        <input type="submit" value="新增商品">
-        <input type="reset" value="重置">
-    </form>
 
     <a href="./admin.php">後台</a>
 
@@ -36,9 +24,7 @@
         </tr>
     </table>
 
-    <?php
-    include_once 'db.php';
-    
+    <?php  
     $rows=all();
     
     dd($rows);

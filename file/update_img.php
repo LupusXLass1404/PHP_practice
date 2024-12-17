@@ -5,7 +5,7 @@
 
     $id=$_POST['id'];
 
-    $imgName=$_POST['img']
+    $imgName=$_POST['img'];
 
     if(isset($_FILES['img'])){
         if($_FILES['img']['error']==0){

@@ -10,7 +10,7 @@ dd($rows);
 
 ?>
 
-<form action="./upload_item.php" method="post" enctype="multipart/form-data">
+<form action="./upload_item.php?id=<?=$_GET['id'];?>" method="post" enctype="multipart/form-data">
     <div>
         <img src="./upload/<?=$row['img'];?>" width=100px><br>
         <input type="file" name="img">
@@ -24,6 +24,6 @@ dd($rows);
         <input type="number" name="cost" id="" value="<?=$row['cost'];?>" min="0">
     </div>
 
-    <input type="submit" value="新增商品">
+    <input type="submit" value="修改">
     <input type="reset" value="重置">
 </form>

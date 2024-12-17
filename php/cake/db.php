@@ -20,6 +20,19 @@ function del($id){
     return db() -> exec($sql);
 }
 
+
+// 儲存（新增、修改）
+function save($array){
+
+
+
+}
+
+// 陣列轉字串
+function a2s($array){
+
+}
+
 // 重新定義連結
 function to($url){
     header("location:".$url);
