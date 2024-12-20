@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>XMLHttpRequest</title>
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        ul li {
+            margin: 16px 128px;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-shadow: 1px 1px 10px #999;
+            transition: 0.5s;
+        }
+
+        ul li:hover {
+            background-color: lightblue;
+            padding: 16px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="header">XMLHttpRequest</h1>
+    <div class="title"></div>
+    <h4></h4>
+    <ul id="list"></ul>
+
+</body>
+
+</html>
+<script>
+    /********************************************************
+    * 1.api網址  https://kktix.com/events.json
+    * 2.宣告一個XMLHttpRequest物件
+    * 3.建立請求的各項設定及實質內容
+    * 4.建立得到回應時的各項行為
+    * 5.送出請求
+    ********************************************************/
+
+    //宣告一個XMLHttpRequest物件
+    let xhr = new XMLHttpRequest();
+
+    //建立請求的各項設定及實質內容
+    xhr.open('GET', 'https://kktix.com/events.json');
+
+    //建立得到回應時的各項設定及行為
+    xhr.onload = function () {
+        let type = xhr.getResponseHeader('Content-Type', 'application/json');
+        let status = xhr.status;
+        let response = xhr.responseText;
+        let data = JSON.parse(response);
+        // console.log(data);
+
+        let li = ''
+        data.entry.forEach((ele, i) => {
+            // console.log(i);
+            li += `
+                <li>
+                    ${ele.title}-${ele.author.name}
+                </li>`;
+        });
+        const listID = document.getElementById('list');
+        listID.innerHTML = li;
+
+        // let ul = document.getElementsByTagName('ul');
+        // console.log(ul);
+    }
+
+
+    //送出請求
+    xhr.send();
+
+</script>
