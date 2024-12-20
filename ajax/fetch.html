@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,32 @@
     <title>Fetch</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <style>
+        ul li {
+            margin: 16px 128px;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-shadow: 1px 1px 10px #999;
+            transition: 0.5s;
+        }
+
+        ul li:hover {
+            background-color: lightblue;
+            padding: 16px;
+            font-size: 20px;
+        }
+    </style>
 </head>
+
 <body>
     <h1 class="header">Fetch</h1>
     <div class="title"></div>
     <h4></h4>
-    <ul></ul>
-    
+    <ul id="list"></ul>
+
 </body>
+
 </html>
 <script>
     /********************************************************
@@ -25,11 +44,29 @@
     ********************************************************/
 
     //建立FETCH請求及實質內容
-
+    fetch('https://kktix.com/events.json')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            let entrys = data.entry;
+            let li = ''
+            entrys.forEach(ele => {
+                li += `
+                <li>
+                    ${ele.title}-${ele.author.name}
+                </li>`;
+            });
+            const listID = document.getElementById('list');
+            listID.innerHTML = li;
+        }).catch(function (error) {
+            console.log('錯誤:', error);
+        });
 
     //建立回呼函式(call back function)來處理回應時的各項行為
 
 
     //建立錯誤處理
 
-  </script>
+</script>
