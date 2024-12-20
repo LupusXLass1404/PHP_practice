@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,30 +8,63 @@
     <title>axios</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <style>
+        ul li {
+            margin: 16px 128px;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-shadow: 1px 1px 10px #999;
+            transition: 0.5s;
+        }
+
+        ul li:hover {
+            background-color: lightblue;
+            padding: 16px;
+            font-size: 20px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <!-----引入axios函式庫------->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
+
 <body>
     <h1 class="header">axios</h1>
     <div class="title"></div>
     <h4></h4>
-    <ul></ul>
-    
+    <ul id="list"></ul>
+
 </body>
+
 </html>
 <script>
-/********************************************************
-* 1.api網址  https://kktix.com/events.json
-* 2.發起一個axios請求
-* 3.建立回呼函式(call back function)來處理回應時的各項行為
-* 4.建立錯誤處理
-********************************************************/
+    /********************************************************
+    * 1.api網址  https://kktix.com/events.json
+    * 2.發起一個axios請求
+    * 3.建立回呼函式(call back function)來處理回應時的各項行為
+    * 4.建立錯誤處理
+    ********************************************************/
 
-//發起一個axios請求
+    //發起一個axios請求
+    axios.get("https://kktix.com/events.json")
+        .then(function (response) {
+            let entrys = response.data.entry;
+
+            entrys.forEach(ele => {
+                let li = `
+                <li>
+                    ${ele.title}-${ele.author.name}
+                </li>`;
+                $('#list').append(li);
+            });
+        })
+
+    //建立回呼函式(call back function)來處理回應時的各項行為
 
 
-//建立回呼函式(call back function)來處理回應時的各項行為
-
-
-//建立錯誤處理
+    //建立錯誤處理
 
 </script>
