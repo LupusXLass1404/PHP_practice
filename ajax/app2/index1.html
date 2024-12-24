@@ -36,6 +36,7 @@
 </html>
 <script>
   getClasses();
+  query(101);
 
   /************************************
   * 1.考慮觸發行為的事件
@@ -67,7 +68,7 @@
   //查詢資料的函式
   function query(code) {
     $.get("./api/query.php", { code }, function (students) {
-      console.log(students);
+      // console.log(students);
       let data = JSON.parse(students);
       let th = `<tr>
               <th>學號</th>
@@ -89,7 +90,7 @@
                 <td>${item.address}</td>
                 <td>
                   <a class='btn btn-success'>編輯</a>
-                  <a class='btn btn-danger' onclick='del(${item.id})'>刪除</a>
+                  <a class='btn btn-danger' onclick='del(${item.id}, ${item.classroom})'>刪除</a>
                 </td>
               </tr>`
         $("#students").append(td);
@@ -105,12 +106,14 @@
   }
 
   //刪除資料的函式
-  function del(id) {
+  function del(id, classroom) {
     let chk = confirm('確定要刪除嗎？');
     if (chk) {
+      $.post('./api/delete.php', { id, classroom }, function (res) {
+        // console.log('deleted');
+        console.log(res);
 
-      $.post('./api/delete.php', { id }, function () {
-        console.log('deleted');
+        query(res);
       })
     }
   }
