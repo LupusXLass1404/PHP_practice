@@ -31,12 +31,13 @@
   <table id="students" class="w-75 m-auto">
 
   </table>
+
+  <div id="modal"></div>
 </body>
 
 </html>
 <script>
   getClasses();
-  query(101);
 
   /************************************
   * 1.考慮觸發行為的事件
@@ -50,6 +51,7 @@
     $.get("./api/get_classes.php", function (classes) {
       let data = JSON.parse(classes);
       // console.log(data);
+      $('#classesList').html('');
       data.forEach(function (item) {
         let c = ` 
           <li class="bav-item">
@@ -57,16 +59,21 @@
           </li>`;
         $('#classesList').append(c);
       })
+      if ($("#students").html() == '') {
+        query(data[0].classroom);
+      }
     })
   }
 
   // 載入新增資料的表單內容
+  let CreateModal;
   function create() {
-    // $.get("./create_from.php", function (htm) {
-    //   $
-
-    // })
-
+    $.get("./create_form.php", function (html) {
+      // console.log('create');
+      $("#modal").html(html);
+      CreateModal = new bootstrap.Modal('#CreateModal');
+      CreateModal.show();
+    })
   }
 
   //查詢資料的函式
@@ -74,6 +81,7 @@
     $.get("./api/query.php", { code }, function (students) {
       // console.log(students);
       let data = JSON.parse(students);
+      // console.log(data)
       let th = `<tr>
               <th>學號</th>
               <th>座號</th>
@@ -93,15 +101,30 @@
                 <td>${item.major}</td>
                 <td>${item.address}</td>
                 <td>
-                  <a class='btn btn-success'>編輯</a>
+                  <a class='btn btn-success edit' data-id="${item.id}">編輯</a>
                   <a class='btn btn-danger' onclick='del(${item.id}, this)'>刪除</a>
                 </td>
               </tr>`
         $("#students").append(td);
       })
 
+      $(".edit").on('click', function () {
+        let id = $(this).data("id");
+        getEditForm(id);
+      })
+
     })
 
+  }
+
+  // 取得編輯資料表單內容
+  let EditModal;
+  function getEditForm(id) {
+    $.get("./edit_form.php", { id }, function (html) {
+      $('#modal').html(html);
+      EditModal = new bootstrap.Modal('#EditModal');
+      EditModal.show();
+    })
   }
 
   //編輯資料的函式
@@ -113,7 +136,8 @@
   function del(id, btn) {
     let chk = confirm('確定要刪除嗎？');
     if (chk) {
-      $.post('./api/delete.php', function (res) {
+      $.post('./api/delete.php', { id }, function (res) {
+        // console.log('deleted');
         // console.log(res);
         $(btn).parents('tr').remove();
       })
