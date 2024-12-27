@@ -62,10 +62,10 @@
 
   // 載入新增資料的表單內容
   function create() {
-    $.get("./create_from.php", function (htm;) {
-      $
+    // $.get("./create_from.php", function (htm) {
+    //   $
 
-    })
+    // })
 
   }
 
@@ -94,7 +94,7 @@
                 <td>${item.address}</td>
                 <td>
                   <a class='btn btn-success'>編輯</a>
-                  <a class='btn btn-danger' onclick='del(${item.id}, ${item.classroom})'>刪除</a>
+                  <a class='btn btn-danger' onclick='del(${item.id}, this)'>刪除</a>
                 </td>
               </tr>`
         $("#students").append(td);
@@ -110,14 +110,12 @@
   }
 
   //刪除資料的函式
-  function del(id, classroom) {
+  function del(id, btn) {
     let chk = confirm('確定要刪除嗎？');
     if (chk) {
-      $.post('./api/delete.php', { id, classroom }, function (res) {
-        // console.log('deleted');
-        console.log(res);
-
-        query(res);
+      $.post('./api/delete.php', function (res) {
+        // console.log(res);
+        $(btn).parents('tr').remove();
       })
     }
   }
