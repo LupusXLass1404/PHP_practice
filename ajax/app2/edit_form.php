@@ -2,7 +2,7 @@
 $row=$Stu->find($_GET['id']);
 
 ?>
-<div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
+<div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="EditModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="#">
@@ -59,12 +59,14 @@ $('#send').on("click", function() {
     console.log(formData);
     $.post("./api/update.php", formData, function() {
         getClasses();
-        alert("新增完成");
+        alert("編輯完成");
         query(formData.classroom);
         // console.log(EditModal);
         EditModal.hide();
-        EditModal.dispose();
-        $("#modal").html("");
+        $('#EditModal').on('hidden.bs.modal', function() {
+            EditModal.dispose();
+            $("#modal").html("");
+        })
     })
 })
 </script>

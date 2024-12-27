@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="CreateModal" tabindex="-1" aria-labelledby="CreateModalLabel" aria-hidden="true">
+<div class="modal fade" id="CreateModal" tabindex="-1" aria-labelledby="CreateModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="#">
@@ -52,11 +52,13 @@ $('#send').on("click", function() {
     console.log(formDate);
     $.post("./api/insert.php", formDate, function() {
         getClasses();
-        alert("編輯完成");
-        CreateModal.dispose();
-        // CreateModal.hide();
-        $("#modal").html("");
+        alert("新增完成");
+        query(formData.classroom);
+        CreateModal.hide();
+        $('#EditModal').on('hidden.bs.modal', function() {
+            CreateModal.dispose();
+            $("#modal").html("");
+        })
     })
-
 })
 </script>
